@@ -8,6 +8,9 @@ UTF-8 text of 1-120 characters, a single line, not only whitespace.
 
 LINE = "You've reached the cat. I'm napping in a box. Leave food \u2014 I mean, a message \u2014 after the beep. I'll ignore it at 4 a.m."
 
+# The em dashes are deliberate: read aloud they are short pauses, so the
+# "Leave food — I mean, a message" slip lands as a spoken correction, and the
+# punch ("I'll ignore it at 4 a.m.") arrives in the last beat of the greeting.
 MAX_CHARS = 120
 
 
@@ -16,6 +19,7 @@ def main() -> None:
     assert "\n" not in line and "\r" not in line, "entry must be a single line"
     assert 1 <= len(line) <= MAX_CHARS, f"entry is {len(line)} chars, limit {MAX_CHARS}"
     assert line.strip(), "entry must not be only whitespace"
+    assert line == line.strip(), "entry must not start or end with whitespace"
 
     import os
 
